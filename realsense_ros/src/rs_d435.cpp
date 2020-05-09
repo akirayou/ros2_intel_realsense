@@ -21,6 +21,11 @@ namespace realsense
 RealSenseD435::RealSenseD435(rs2::context ctx, rs2::device dev, rclcpp::Node & node)
 : RealSenseBase(ctx, dev, node)
 { 
+  
+  auto sn = dev_.get_info(RS2_CAMERA_INFO_SERIAL_NUMBER);
+  cfg_.enable_device(std::string(sn)); ///T265 can not do this even if hadware_resed was done
+  if (!cfg_.can_resolve(pipeline_))RCLCPP_ERROR(node_.get_logger(),"Can not set device Serial No");
+
   for (auto & stream : IMAGE_STREAMS) {
     setupStream(stream);
   }

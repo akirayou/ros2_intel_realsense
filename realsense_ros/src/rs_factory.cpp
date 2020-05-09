@@ -129,8 +129,8 @@ void RealSenseNodeFactory::getDevice(rs2::device_list & list)
       bool found = false;
       for (auto && dev : list) {
         auto sn = dev.get_info(RS2_CAMERA_INFO_SERIAL_NUMBER);
-        RCLCPP_INFO(this->get_logger(), "Device with serial number %s was found.", sn);
         if (serial_no_.empty() || sn == serial_no_) {
+          RCLCPP_INFO(this->get_logger(), "Device with serial number %s was found.", sn);
           dev_ = dev;
           serial_no_ = sn;
           found = true;

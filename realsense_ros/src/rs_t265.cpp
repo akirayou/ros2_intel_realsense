@@ -20,12 +20,16 @@
 #include "tf2/buffer_core.h"
 #include "tf2/convert.h"
 #include "realsense/rs_t265.hpp"
+#include <unistd.h>
 
 namespace realsense
 {
 RealSenseT265::RealSenseT265(rs2::context ctx, rs2::device dev, rclcpp::Node & node)
 : RealSenseBase(ctx, dev, node)
 { 
+  RCLCPP_INFO(node_.get_logger(),"Force Reinitialization for T265 Just workaround");
+  dev_.hardware_reset(); //T265 need this...Why?
+  sleep(1);
   for (auto & stream : STREAMS) {
     setupStream(stream);
   }
