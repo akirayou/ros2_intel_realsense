@@ -50,25 +50,33 @@ namespace realsense
 
   const std::string DEFAULT_BASE_FRAME_ID             = "camera_link";
   const std::string DEFAULT_ODOM_FRAME_ID             = "odom_frame";
-  const std::string DEFAULT_DEPTH_FRAME_ID            = "camera_depth_frame";
-  const std::string DEFAULT_INFRA1_FRAME_ID           = "camera_infra1_frame";
-  const std::string DEFAULT_INFRA2_FRAME_ID           = "camera_infra2_frame";
-  const std::string DEFAULT_COLOR_FRAME_ID            = "camera_color_frame";
-  const std::string DEFAULT_FISHEYE1_FRAME_ID         = "camera_fisheye1_frame";
-  const std::string DEFAULT_FISHEYE2_FRAME_ID         = "camera_fisheye2_frame";
-  const std::string DEFAULT_POSE_FRAME_ID             = "camera_pose_frame";
+  const std::string DEFAULT_DEPTH_FRAME_ID            = "depth_frame";
+  const std::string DEFAULT_INFRA1_FRAME_ID           = "infra1_frame";
+  const std::string DEFAULT_INFRA2_FRAME_ID           = "infra2_frame";
+  const std::string DEFAULT_COLOR_FRAME_ID            = "color_frame";
+  const std::string DEFAULT_FISHEYE1_FRAME_ID         = "fisheye1_frame";
+  const std::string DEFAULT_FISHEYE2_FRAME_ID         = "fisheye2_frame";
+  const std::string DEFAULT_POSE_FRAME_ID             = "pose_frame";
 
-  const std::string DEFAULT_DEPTH_OPTICAL_FRAME_ID    = "camera_depth_optical_frame";
-  const std::string DEFAULT_INFRA1_OPTICAL_FRAME_ID   = "camera_infra1_optical_frame";
-  const std::string DEFAULT_INFRA2_OPTICAL_FRAME_ID   = "camera_infra2_optical_frame";
-  const std::string DEFAULT_COLOR_OPTICAL_FRAME_ID    = "camera_color_optical_frame";
-  const std::string DEFAULT_FISHEYE1_OPTICAL_FRAME_ID = "camera_fisheye1_optical_frame";
-  const std::string DEFAULT_FISHEYE2_OPTICAL_FRAME_ID = "camera_fisheye2_optical_frame";
-  const std::string DEFAULT_ACCEL_OPTICAL_FRAME_ID    = "camera_accel_optical_frame";
-  const std::string DEFAULT_GYRO_OPTICAL_FRAME_ID     = "camera_gyro_optical_frame";
-  const std::string DEFAULT_POSE_OPTICAL_FRAME_ID     = "camera_pose_optical_frame";
+  const std::string DEFAULT_DEPTH_OPTICAL_FRAME_ID    = "depth_optical_frame";
+  const std::string DEFAULT_INFRA1_OPTICAL_FRAME_ID   = "infra1_optical_frame";
+  const std::string DEFAULT_INFRA2_OPTICAL_FRAME_ID   = "infra2_optical_frame";
+  const std::string DEFAULT_COLOR_OPTICAL_FRAME_ID    = "color_optical_frame";
+  const std::string DEFAULT_FISHEYE1_OPTICAL_FRAME_ID = "fisheye1_optical_frame";
+  const std::string DEFAULT_FISHEYE2_OPTICAL_FRAME_ID = "fisheye2_optical_frame";
+  const std::string DEFAULT_ACCEL_OPTICAL_FRAME_ID    = "accel_optical_frame";
+  const std::string DEFAULT_GYRO_OPTICAL_FRAME_ID     = "gyro_optical_frame";
+  const std::string DEFAULT_POSE_OPTICAL_FRAME_ID     = "pose_optical_frame";
 
-  const std::string DEFAULT_ALIGNED_DEPTH_TO_COLOR_FRAME_ID = "camera_aligned_depth_to_color_frame";
+  const std::string DEPTH_OPTICAL_FRAME_PARAM    = "depth_optical_frame";
+  const std::string INFRA1_OPTICAL_FRAME_PARAM   = "infra1_optical_frame";
+  const std::string INFRA2_OPTICAL_FRAME_PARAM   = "infra2_optical_frame";
+  const std::string COLOR_OPTICAL_FRAME_PARAM    = "color_optical_frame";
+  const std::string FISHEYE1_OPTICAL_FRAME_PARAM = "fisheye1_optical_frame";
+  const std::string FISHEYE2_OPTICAL_FRAME_PARAM = "fisheye2_optical_frame";
+  const std::string ACCEL_OPTICAL_FRAME_PARAM    = "accel_optical_frame";
+  const std::string GYRO_OPTICAL_FRAME_PARAM     = "gyro_optical_frame";
+  const std::string POSE_OPTICAL_FRAME_PARAM     = "pose_optical_frame";
 
   const std::string DEFAULT_UNITE_IMU_METHOD         = "";
   const std::string DEFAULT_FILTERS                  = "";
@@ -109,6 +117,16 @@ namespace realsense
                                                                      {ACCEL, DEFAULT_ACCEL_OPTICAL_FRAME_ID},
                                                                      {GYRO, DEFAULT_GYRO_OPTICAL_FRAME_ID},
                                                                      {POSE, DEFAULT_POSE_OPTICAL_FRAME_ID}};
+
+  const std::map<stream_index_pair, std::string> OPTICAL_FRAME_PARAMS = {{COLOR, COLOR_OPTICAL_FRAME_PARAM},
+                                                                     {DEPTH, DEPTH_OPTICAL_FRAME_PARAM},
+                                                                     {INFRA1, INFRA1_OPTICAL_FRAME_PARAM},
+                                                                     {INFRA2, INFRA2_OPTICAL_FRAME_PARAM},
+                                                                     {FISHEYE1, FISHEYE1_OPTICAL_FRAME_PARAM},
+                                                                     {FISHEYE2, FISHEYE2_OPTICAL_FRAME_PARAM},
+                                                                     {ACCEL, ACCEL_OPTICAL_FRAME_PARAM},
+                                                                     {GYRO, GYRO_OPTICAL_FRAME_PARAM},
+                                                                     {POSE, POSE_OPTICAL_FRAME_PARAM}};
 
   const std::map<stream_index_pair, std::string> SAMPLE_TOPIC = {{COLOR, "camera/color/image_raw"},
                                                                  {DEPTH, "camera/depth/image_rect_raw"},

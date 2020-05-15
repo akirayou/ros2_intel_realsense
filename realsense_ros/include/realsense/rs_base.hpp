@@ -105,6 +105,7 @@ protected:
   rs2::pipeline pipeline_;
   rs2::config cfg_;
   std::string base_frame_id_;
+  std::string odom_frame_id_;
   rs2::frame_queue frame_data;
   std::thread work_thread_;
   std::shared_ptr<tf2_ros::StaticTransformBroadcaster> static_tf_broadcaster_;
@@ -123,6 +124,7 @@ protected:
   std::map<stream_index_pair, rclcpp::Publisher<sensor_msgs::msg::Imu>::SharedPtr> imu_pub_;
   std::map<stream_index_pair, rclcpp::Publisher<realsense_msgs::msg::IMUInfo>::SharedPtr> imu_info_pub_;
   rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odom_pub_;
+  std::map<stream_index_pair, std::string> optical_frame_id_; 
 };
 }  // namespace realsense
 #endif  // REALSENSE__RS_BASE_HPP_

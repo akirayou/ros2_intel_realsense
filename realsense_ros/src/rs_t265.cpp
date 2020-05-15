@@ -102,7 +102,7 @@ void RealSenseT265::publishIMUTopic(const rs2::frame & frame, const rclcpp::Time
   sensor_msgs::msg::Imu imu_msg;
   realsense_msgs::msg::IMUInfo info_msg;
 
-  imu_msg.header.frame_id = OPTICAL_FRAME_ID.at(type_index);
+  imu_msg.header.frame_id = optical_frame_id_.at(type_index);
   imu_msg.orientation.x = 0.0;
   imu_msg.orientation.y = 0.0;
   imu_msg.orientation.z = 0.0;
@@ -149,7 +149,7 @@ IMUInfo RealSenseT265::getIMUInfo(const rs2::frame & frame, const stream_index_p
   }
 
   auto index = 0;
-  info.header.frame_id = OPTICAL_FRAME_ID.at(stream_index);
+  info.header.frame_id = optical_frame_id_.at(stream_index);
   for (int i = 0; i < 3; ++i) {
     for (int j = 0; j < 4; ++j) {
       info.data[index] = imu_intrinsics.data[i][j];
@@ -181,8 +181,8 @@ void RealSenseT265::publishPoseTopic(const rs2::frame & frame, const rclcpp::Tim
   static tf2_ros::TransformBroadcaster br(node_);
   geometry_msgs::msg::TransformStamped msg;
   msg.header.stamp = time;
-  msg.header.frame_id = DEFAULT_ODOM_FRAME_ID;
-  msg.child_frame_id = OPTICAL_FRAME_ID.at(type_index);
+  msg.header.frame_id = odom_frame_id_;
+  msg.child_frame_id = optical_frame_id_.at(type_index);
   msg.transform.translation.x = pose_msg.pose.position.x;
   msg.transform.translation.y = pose_msg.pose.position.y;
   msg.transform.translation.z = pose_msg.pose.position.z;
@@ -214,8 +214,8 @@ void RealSenseT265::publishPoseTopic(const rs2::frame & frame, const rclcpp::Tim
 
   nav_msgs::msg::Odometry odom_msg;
 
-  odom_msg.header.frame_id = DEFAULT_ODOM_FRAME_ID;
-  odom_msg.child_frame_id = OPTICAL_FRAME_ID.at(type_index);
+  odom_msg.header.frame_id = odom_frame_id_;
+  odom_msg.child_frame_id = optical_frame_id_.at(type_index);
   odom_msg.header.stamp = time;
   odom_msg.pose.pose = pose_msg.pose;
   odom_msg.pose.covariance = {cov_pose, 0, 0, 0, 0, 0,
